@@ -1,0 +1,40 @@
+{
+  "name": "image-gallery",
+  "version": "1.0.0",
+  "description": "Image gallery",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/server.js",
+    "build": "tsc",
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caesar003/image-gallery-svc.git"
+  },
+  "keywords": [],
+  "author": "caesar003",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^5.0.1",
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.14.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^22.15.2",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "bugs": {
+    "url": "https://github.com/caesar003/image-gallery-svc/issues"
+  },
+  "homepage": "https://github.com/caesar003/image-gallery-svc#readme"
+}

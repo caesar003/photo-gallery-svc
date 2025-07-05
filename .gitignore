@@ -1,0 +1,7 @@
+.env
+notes
+dist
+
+node_modules
+
+assets
