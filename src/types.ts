@@ -3,6 +3,7 @@ type Media = string;
 export interface Day {
   day: number;
   assets: Media[];
+  location?: string;
 }
 
 export interface Month {

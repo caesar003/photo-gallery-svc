@@ -58,12 +58,46 @@ const getMediaStructure = (): Year[] => {
           monthObj.days.push(dayObj);
         }
 
-        dayObj.assets.push(`${year}/${month}/${day}/${filename}`);
+        // Skip location.txt files from assets array
+        if (filename.toLowerCase() !== "location.txt") {
+          dayObj.assets.push(`${year}/${month}/${day}/${filename}`);
+        }
       }
     }
   };
 
   walk(root);
+
+  // After walking all files, check for location files in each day directory
+  Object.values(years).forEach((yearObj) => {
+    yearObj.months.forEach((monthObj) => {
+      monthObj.days.forEach((dayObj) => {
+        const dayDir = path.join(
+          root,
+          yearObj.year.toString(),
+          monthObj.month.toString(),
+          dayObj.day.toString()
+        );
+        const locationFile = path.join(dayDir, "location.txt");
+
+        try {
+          if (fs.existsSync(locationFile)) {
+            const locationContent = fs
+              .readFileSync(locationFile, "utf8")
+              .trim();
+            if (locationContent) {
+              dayObj.location = locationContent;
+            }
+          }
+        } catch (error) {
+          // Silently ignore errors reading location file
+          console.warn(
+            `Warning: Could not read location file for ${yearObj.year}/${monthObj.month}/${dayObj.day}`
+          );
+        }
+      });
+    });
+  });
 
   // Sort by year, month, day if needed
   return Object.values(years).sort((a, b) => b.year - a.year);
